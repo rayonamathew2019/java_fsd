@@ -1,0 +1,116 @@
+create database vehicle;
+use vehicle;
+create table rentals(
+rental_id varchar(10),
+customer_id varchar(10),
+car_id varchar(10),
+pickup_date date Null,
+return_date date null,
+km_driven int null,
+fare_amount double(10,2) null,
+primary key(rental_id),
+foreign key(customer_id) references customers(customer_id),
+foreign key(car_id) references cars(car_id)
+);
+
+create table customers(
+customer_id varchar(10),
+customer_name varchar(20),
+address varchar(20),
+phone_no bigint,
+email varchar(20),
+primary key(customer_id)
+); 
+
+create table owners
+(
+owner_id varchar(10),
+owner_name varchar(20),
+address varchar(20),
+phone_no bigint,
+email varchar(20),
+primary key(owner_id)
+); 
+
+create table cars(
+car_id varchar(10),
+car_name varchar(20) null,
+car_type varchar(20) null,
+owner_id varchar(10) ,
+primary key(car_id),
+foreign key(owner_id) references owners(owner_id)
+); 
+
+ INSERT INTO owners values
+ ("O001","Ammu","kerela",8764864368,"ammu@gm"),
+ ("O002","appu","tamlilnadu",9763765324,"appu@gm"),
+ ("O003","achu","andhra",9753267543,"achu@gm"),
+ ("O004","minnu","delhi",6754327856,"minnu@gm"),
+ ("O005","tuttu","mumbai",9753578623,"tuttu@gm"),
+ ("O006","mittu","goa",6457842679,"mittu@gm");
+
+
+insert into customers
+values("C001","Amrutha","Chengannur",7032541845,"amrutha@gmail.com"),
+("C002","Rayona","Kottayam",8765230098,"rayona@gmail.com"),
+ ("C003","Migha","Pathanamthitta",8346281098,"migha@gmail.com"),
+("C004","Shankari","Thrissur",9523451678,"shankari@gmail.com"),
+("C005","Nimisha","Ernakulam",8745632711,"nimisha@gmail.com"),
+ ("C007","Taniya","Paravur",9456123677,"taniya@gmail.com");
+-- #("7","Merin","Lakoor",6678902466,"merin@gmail.com"),
+-- #("8","Nisha","Idappally",8891254367,"nisha@gmail.com");
+
+
+insert into cars values
+("A001","audi","xl","O001"),
+("A002","bmw","l","O002"),
+("A003","swift","s","O003"),
+("A004","audi","xl","O004"),
+("A005","bmw","m","O005"),
+("A006","alto","xxl","O006"),
+("V001","audi","xl","O001"),
+("V003","bmw","l","O002"),
+("V004","swift","s","O003"),
+("V005","audi","xl","O004"),
+("V006","bmw","m","O005"),
+("V007","alto","xxl","O006");
+
+
+
+insert into Rentals
+(rental_id,customer_id ,car_id,pickup_date,return_date,km_driven,fare_amount )
+values
+("R001","C007","V004",'2018-03-10','2018-03-10',800,9000),
+("R002","C001","V007",'2018-03-11','2018-03-12',200,3000),
+("R003","C007","V003",'2018-04-15','2018-04-15',100,1500),
+("R004","C007","V001",'2018-05-16','2018-05-18',1000,10000),
+("R005","C004","V005",'2018-05-10','2018-05-12',900,11000),
+("R006","C004","V006",'2018-05-20','2018-05-21',200,2500);
+
+select car_id,car_name,car_type from cars where car_id not in (select car_id from rentals) order by car_id ;
+
+#select pickup_date,return_date from rentals where rentals.rental_id="R002";
+
+select car_id,car_name, owner_id from cars where car_type in ( "s","xxl") order by car_id;
+
+select car_id,car_name,car_type from cars where car_type = "m" order by car_id;
+
+alter table cars
+add column car_regno varchar(10);
+
+select distinct o.owner_id,o.owner_name,o.address,o.phone_no from owners o
+join cars c on o.owner_id=c.owner_id
+where c.car_name like "audi"
+order by o.owner_id;
+
+
+select rental_id,car_id,customer_id,km_driven from rentals
+where pickup_date between '2018-03-10'and '2018-05-12'
+order by rental_id;
+
+
+
+select distinct car_id,count(car_id) as count from rentals
+group by car_id
+ORDER BY car_id asc;
+
