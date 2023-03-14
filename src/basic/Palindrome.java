@@ -1,3 +1,5 @@
+Write a program to find palindrome of a number?
+
 package basic;
 import java.util.*;
 public class Palindrome {
