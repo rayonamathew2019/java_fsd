@@ -1,3 +1,6 @@
+write a program to print the cummulative sum in java?
+
+
 package array;
 
 import java.util.*;
