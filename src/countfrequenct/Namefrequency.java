@@ -1,3 +1,6 @@
+Write a program to find the count of names in a list?
+
+
 package countfrequenct;
 
 import java.util.Arrays;
