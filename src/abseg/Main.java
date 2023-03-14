@@ -1,3 +1,6 @@
+Self learning : to familiarize inheritance
+
+
 package abseg;
 
 import java.util.Scanner;
