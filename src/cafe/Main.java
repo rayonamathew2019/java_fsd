@@ -1,3 +1,7 @@
+Create a curd application, create, update, retrive, delete data. list1 contains uid and name. list2 contains uid, name and food. 
+
+
+
 
 package cafe;
 
