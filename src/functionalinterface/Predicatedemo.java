@@ -1,3 +1,6 @@
+Write a program to familiarize with predicte in java 8(filter and map functions)?
+
+
 package functionalinterface;
 
 import java.util.Arrays;
