@@ -1,3 +1,5 @@
+Find the count of numbers in a list whose sum is equal to 25?
+
 package collec;
 import java.util.*;
 public class Arraylist {
