@@ -1,3 +1,6 @@
+
+Write a program to find the count the number of positive and negative numbers in an array?
+
 package count;
 
 public class Posne {
