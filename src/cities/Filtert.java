@@ -1,3 +1,5 @@
+Enter a set of citty names filter names strarting with "T" using java 8?
+
 package cities;
 
 import java.util.Arrays;
