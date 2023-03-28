@@ -1,0 +1,216 @@
+
+----------------------------convert roman number to number---------------------------------------------- 
+function roman_to_Int(str1) {
+if(str1 == null) return -1;
+var num = char_to_int(str1.charAt(0));
+var pre, curr;
+
+for(var i = 1; i < str1.length; i++){
+curr = char_to_int(str1.charAt(i));
+pre = char_to_int(str1.charAt(i-1));
+if(curr <= pre){
+num += curr;
+} else {
+num = num - pre*2 + curr;
+}
+}
+
+return num;
+}
+
+function char_to_int(c){
+switch (c){
+case 'I': return 1;
+case 'V': return 5;
+case 'X': return 10;
+case 'L': return 50;
+case 'C': return 100;
+case 'D': return 500;
+case 'M': return 1000;
+default: return -1;
+}
+}
+console.log(roman_to_Int('XXVI'));
+console.log(roman_to_Int('CI'));
+
+---------------------targer pair---------------------------------
+
+function findPair(array, target) {
+  var pairs = [];
+
+  for (var i = 0; i < array.length; i++) {
+    for (var j = i + 1; j < array.length; j++) {
+      if (array[i] + array[j] === target) {
+        pairs.push([array[i], array[j]]);
+      }
+    }
+  }
+
+  return pairs;
+}
+var array = [1, 2, 3, 4, 5, 6];
+var target = 7;
+
+var pairs = findPair(array, target);
+
+console.log(pairs); 
+
+---------------------reverse-----------------------------------
+
+function reverseString(str) {
+  // Check if string contains non-ASCII characters
+  if (!/^[\x00-\x7F]*$/.test(str)) {
+    throw new Error('Input contains non-ASCII characters.');
+  }
+  // Reverse the string using Array.reverse() and String.join()
+  return str.split('').reverse().join('');
+}
+console.log(reverseString('hello')); // Output: 'olleh'
+console.log(reverseString('world')); // Output: 'dlrow'
+
+--------------------------------------employee form-----------------------------------
+form.html
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Employee Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      width: 400px;
+      margin: 0 auto;
+      border: 2px solid #ccc;
+      padding: 60px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+
+    button[type="submit"] {
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+
+    #success-message {
+      color: green;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    #error-message {
+      color: red;
+      text-align: center;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Employee Form</h1>
+  <form id="employee-form">
+    <label for="emp_id">Employee ID:</label>
+    <input type="text" id="emp_id" name="emp_id" required>
+
+    <label for="emp_name">Employee Name:</label>
+    <input type="text" id="emp_name" name="emp_name" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password">
+    <br>
+    <label for="confirm-password">Confirm Password:</label>
+    <input type="password" id="confirm-password" name="confirm_password" onkeyup="validateForm();">
+    <br>
+    <div id="password_error"></div>
+    <br>
+    <input type="submit" value="Submit">
+
+    <label for="emp_location">Employee Location:</label>
+    <input type="text" id="emp_location" name="emp_location" required>
+
+    <label for="emp_addr">Employee Address:</label>
+    <input type="text" id="emp_addr" name="emp_addr" required>
+
+    <label for="bloodgroup">Blood Group:</label>
+    <input type="text" id="bloodgroup" name="bloodgroup" required>
+
+    <label for="experience">Experience:</label>
+    <input type="text" id="experience" name="experience" required>
+
+    <label for="skills">Skills:</label>
+    <input type="text" id="skills" name="skills" required>
+
+    <button type="submit" id="submit-form">Submit</button>
+  </form>
+  <div id="success-message"></div>
+  <div id="error-message"></div>
+  
+    <script>
+      function validateForm() {
+      var password = document.getElementById("password").value;
+      var confirm_password = document.getElementById("confirm-password").value;
+    
+      if (password != confirm_password) {
+        alert("Passwords do not match!");
+        return false;
+      }}
+    </script>
+  
+  <script src="for.js"></script>
+  </body>
+
+form.js
+
+const form = document.getElementById('employee-form');
+const successMessage = document.getElementById('success-message');
+const errorMessage = document.getElementById('error-message');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(form);
+  const xhr = new XMLHttpRequest();
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        successMessage.innerHTML = 'Employee form submitted successfully.';
+        errorMessage.innerHTML = '';
+        form.reset();
+      } else {
+        errorMessage.innerHTML = 'There was an error submitting the form.';
+        successMessage.innerHTML = '';
+      }
+    }
+  };
+
+  xhr.open('POST', 'submit-employee-form.php', true);
+  xhr.send(formData);
+});
+
