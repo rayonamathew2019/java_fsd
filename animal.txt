@@ -1,0 +1,139 @@
+class Animal {
+
+   name: string;
+  
+   age: number;
+  
+   sound: string;
+  
+  
+  
+   constructor(name: string, age: number, sound: string) {
+  
+   this.name = name;
+  
+   this.age = age;
+  
+   this.sound = sound;
+  
+   }
+  
+  
+  
+   makeSound(): void {
+  
+   console.log(`${this.name} makes the sound: ${this.sound}`);
+  
+   }
+  
+   }
+  
+  
+  
+   class Mammal extends Animal {
+  
+   furColor: string;
+  
+  
+  
+   constructor(name: string, age: number, sound: string, furColor: string) {
+  
+   super(name, age, sound);
+  
+   this.furColor = furColor;
+  
+   }
+  
+
+  
+   describe(): void {
+  
+   console.log(`${this.name} is a mammal, ${this.age} years old, has ${this.furColor} fur, and makes the sound: ${this.sound}`);
+  
+   }
+  
+   }
+  
+  
+  
+   class Bird extends Animal {
+  
+   wingSpan: number;
+  
+  
+  
+   constructor(name: string, age: number, sound: string, wingSpan: number) {
+  
+   super(name, age, sound);
+  
+   this.wingSpan = wingSpan;
+  
+   }
+  
+  
+  
+   describe(): void {
+  
+   console.log(`${this.name} is a bird, ${this.age} years old, has a wing span of ${this.wingSpan} cm, and makes the sound: ${this.sound}`);
+  
+   }
+  
+   }
+  
+  
+  
+   class Fish extends Animal {
+  
+   waterType: string;
+  
+  
+  
+   constructor(name: string, age: number, sound: string, waterType: string) {
+  
+   super(name, age, sound);
+  
+   this.waterType = waterType;
+  
+   }
+  
+  
+  
+   describe(): void {
+  
+   console.log(`${this.name} is a fish, ${this.age} years old, lives in ${this.waterType} water, and makes the sound: ${this.sound}`);
+  
+   }
+  
+   }
+  
+  
+  
+   // Create instances of the classes
+  
+   const dog = new Mammal('Dog', 3, 'Bark', 'Brown');
+  
+   const cat = new Mammal('Cat', 5, 'Meow', 'Black');
+  
+   const parrot = new Bird('Parrot', 2, 'Squawk', 30);
+  
+   const penguin = new Bird('Penguin', 1, 'Hoot', 40);
+  
+   const goldfish = new Fish('Goldfish', 2, 'Blub', 'Fresh');
+  
+   const clownfish = new Fish('Clownfish', 1, 'Nemo', 'Salt');
+  
+  
+  
+   // Call methods on the instances
+  
+   dog.makeSound();
+  
+   cat.describe();
+  
+   parrot.makeSound();
+  
+   penguin.describe();
+  
+   goldfish.makeSound();
+  
+   clownfish.describe();
